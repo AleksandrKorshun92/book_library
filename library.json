@@ -1,0 +1,107 @@
+[
+    {
+        "id": 1,
+        "title": "Война и мир",
+        "author": "Толстой А",
+        "year": "2020",
+        "status": "выдана"
+    },
+    {
+        "id": 3,
+        "title": "Иной",
+        "author": "Иной",
+        "year": "2030",
+        "status": "в наличии"
+    },
+    {
+        "id": 4,
+        "title": "Изгой",
+        "author": "Толстой А",
+        "year": "2020",
+        "status": "в наличии"
+    },
+    {
+        "id": 5,
+        "title": "Еы",
+        "author": "",
+        "year": "",
+        "status": "в наличии"
+    },
+    {
+        "id": 6,
+        "title": "dj",
+        "author": "s",
+        "year": "2222",
+        "status": "в наличии"
+    },
+    {
+        "id": 7,
+        "title": "sasa",
+        "author": "ss",
+        "year": 2020,
+        "status": "в наличии"
+    },
+    {
+        "id": 8,
+        "title": "sss",
+        "author": "aaa",
+        "year": 2055,
+        "status": "в наличии"
+    },
+    {
+        "id": 9,
+        "title": "sasa",
+        "author": "ss",
+        "year": 22444,
+        "status": "в наличии"
+    },
+    {
+        "id": 10,
+        "title": "Камик",
+        "author": "Саша",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 11,
+        "title": "sasa",
+        "author": "ss",
+        "year": 22,
+        "status": "в наличии"
+    },
+    {
+        "id": 12,
+        "title": "sasaas",
+        "author": "ss",
+        "year": 2,
+        "status": "в наличии"
+    },
+    {
+        "id": 13,
+        "title": "sasa",
+        "author": "s",
+        "year": 222,
+        "status": "в наличии"
+    },
+    {
+        "id": 14,
+        "title": "sa",
+        "author": "a",
+        "year": 222,
+        "status": "в наличии"
+    },
+    {
+        "id": 15,
+        "title": "кам",
+        "author": "кам",
+        "year": 222,
+        "status": "в наличии"
+    },
+    {
+        "id": 16,
+        "title": "sasa",
+        "author": "sa",
+        "year": 22,
+        "status": "в наличии"
+    }
+]
