@@ -4,7 +4,8 @@ LEXICON_STEP: dict[str, str] = {
     "equals": "="*100,
     "stars": "*"*100,
     "lib": "|=|"*30,
-    "space": ' '*10
+    "space": ' '*10,
+    "exclamation_mark": '!!! '*30,
     }
 
 LEXICON: dict[str, str] = {
@@ -39,15 +40,11 @@ LEXICON: dict[str, str] = {
     "error_delete_books_id_not": "Книга не найдена с id - ",
     "error_search_books": "Неверные данные: название, автор или год ",
     "error_search_books_null": "Книги по данным не найдены ",
-    "error_display_books_null": "Библиотека пустая ",
-    "error_update_status": "Ошибка обновления статуса ",
-    "error_update_status_id": "Книга не найдена c id - ",
-    "error_update_status_input": "Неверный статус. Доступные статусы: 'в наличии', 'выдана'.",
-    "error_update_status_repeat": "Нет смысла менять, у книги и так статус - ",
     
-    'book_in_stock': "в наличии",
-    'book_is_missing': "выдана",
-    
+    "exit":'Завершение работы программы через 3 секунды',
+    "exit_end":'Прощай'
+   
+   
     }
 
 
@@ -72,13 +69,12 @@ LEXICON_LOG: dict[str, str] = {
     "delete_search_books_true": 'Книги успешно найдены',
     
     "display_books": 'Открыто меню - Отображать все книги',
-    "error_display_books_null": "Библиотека пустая ",
     "display_books_true": 'Книги успешно отоброжены из библиотеки',
     
     "update_status": 'Открыто меню - Изменить статус книги',
     "error_update_status": "Ошибка обновления статуса ",
     "update_status_true": 'Статус книги успешно изменен',
     
-    "exit_menu": '6. Выход',
+    "exit_menu": 'Пользователь нажал выход (программа завершает работу через 3 секунды)',
    
     }

@@ -3,6 +3,7 @@ import os
 import logging
 import datetime
 from lexicon import LEXICON_LOG, LEXICON, LEXICON_STEP
+from user_exception import *
 
 # Настройка логирования. Логи сохраняются в файл "book.log".
 logging.basicConfig(
@@ -17,7 +18,7 @@ class Book:
         self.title: str = title
         self.author: str = author
         self.year: str = year
-        self.status: str = LEXICON['book_in_stock']
+        self.status: str = 'в наличии'
     
     def book_dict(self) -> dict[str, str]:
         return {
@@ -111,21 +112,32 @@ class Library:
 
     def display_books(self):
         if not self.books:
-            return 
+            raise DisplayBookError 
         else:
             books_library = [book for book in self.books.values()]
             return books_library
+    
+    
+    def update_status(self, book_id:int, new_status:str) ->str:
+        # Проверяем наличие книги по ID
+        if book_id not in self.books:
+            logging.error(InvalidBookIDError)
+            raise InvalidBookIDError(book_id)
+            
+        # Проверка допустимости нового статуса
+        if new_status not in ['в наличии', 'выдана']:
+            logging.error(InvalidStatusError)
+            raise InvalidStatusError(new_status)
 
+        current_book:Book = self.books[book_id]
+        # Если новый статус совпадает со старым, выбрасываем исключение
+        if current_book.status == new_status:
+            logging.error(DuplicateStatusError)
+            raise DuplicateStatusError(new_status)
 
-    def update_status(self, book_id, new_status):
-        if book_id in self.books:
-            if new_status in [LEXICON['book_in_stock'], LEXICON['book_is_missing']]:
-                if self.books[book_id].status != new_status:
-                    print(f"{LEXICON['update_status_true']} {self.books[book_id].book_dict()}")
-                    self.save_books()
-                else:
-                    print(f"{LEXICON['error_update_status_repeat']} {new_status}") 
-            else:
-                print(LEXICON['error_update_status_input'])
         else:
-            print(f"{LEXICON['error_update_status_id']} {book_id}")
+            # Обновляем статус книги
+            current_book.status = new_status
+            self.save_books()
+            return f"{LEXICON['update_status_true']} {current_book.book_dict()}"
+

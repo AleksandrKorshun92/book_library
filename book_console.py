@@ -9,8 +9,10 @@
 
 import logging
 from datetime import datetime
+import time
 from book_class import Library
 from lexicon import LEXICON, LEXICON_LOG, LEXICON_STEP
+from user_exception import *
 
 
 # Настройка логирования. Логи сохраняются в файл "book.log".
@@ -96,36 +98,37 @@ def book_console():
 
             case 4:
                 logging.info(LEXICON_LOG['display_books'])
-                library_shows = library.display_books()
-                if not library_shows:
-                    print(f"{LEXICON['error_display_books_null']} \n")
-                    logging.error({LEXICON_LOG['error_display_books_null']})
-                else:
+                try:
+                    library_shows = library.display_books()
                     print(f"{LEXICON_STEP['lower']}")
                     print(f"{LEXICON_STEP['space']}{LEXICON['display_books_true']}")
                     print(f"{LEXICON_STEP['lower']}")
                     for book in library_shows:
                         print(book.book_dict())
                     logging.info(LEXICON_LOG['display_books_true'])
+                except DisplayBookError as e:
+                    logging.error(e)
+                    print(f"{LEXICON_STEP['exclamation_mark']}")
+                    print(e)
 
-
-
+            
             case 5:
                 logging.info(LEXICON_LOG['update_status'])
                 try:
                     book_id = int(input(LEXICON['update_status_id']))
                     new_status = input(LEXICON['update_status_input'])
-                    library.update_status(book_id, new_status)
+                    print(library.update_status(book_id, new_status))
                     logging.info(LEXICON_LOG['update_status_true'])
-                except ValueError as e:
+                except (InvalidBookIDError, InvalidStatusError, DuplicateStatusError) as e:
                     logging.error(f"{LEXICON_LOG['error_update_status']} {e}")
-                    print(LEXICON_STEP['equals'])
-                    print(LEXICON['error_update_status'])
-                    print(f"{LEXICON_STEP['equals']} \n")
-
+                    print(f"{LEXICON_STEP['exclamation_mark']}")
+                    print(e)
 
             case 6:
-                print("Выход из программы.")
+                logging.info(LEXICON_LOG['exit_menu'])
+                print(LEXICON['exit'])
+                time.sleep(3)
+                print(f"{LEXICON_STEP['space']}{LEXICON['exit_end']}")
                 break
 
         # else:
