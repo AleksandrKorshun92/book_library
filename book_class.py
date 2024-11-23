@@ -1,7 +1,6 @@
 import json
 import os
 import logging
-import datetime
 from lexicon import LEXICON_LOG, LEXICON, LEXICON_STEP
 from user_exception import *
 
@@ -75,39 +74,48 @@ class Library:
     def add_book(self, title, author, year):     
         book = Book(self.next_id, title, author, int(year))
         self.books[self.next_id] = book
-        print(f"{LEXICON_STEP['stars']}")
-        print(f"{LEXICON['add_book_true']} {book.title}")
-        print(f"{LEXICON_STEP['stars']}")
         self.next_id += 1
         self.save_books()
+        print(f"{LEXICON_STEP['stars']}")
+        return f"{LEXICON['add_book_true']} {book.title}\n {LEXICON_STEP['stars']}"
 
 
     def remove_book(self, book_id):
-        try:
-            if book_id in self.books:
-                removed_book = self.books.pop(book_id)
-                print(f"{LEXICON_STEP['stars']}")
-                print(f"{LEXICON['delete_books_true']} {removed_book.id} c названием - {removed_book.title}")
-                print(f"{LEXICON_STEP['stars']}")
-                self.save_books()
-        except Exception as e:
-            logging.error(f"{LEXICON_LOG['error_delete_books_id']} {e}")
-            print(f"{LEXICON['error_delete_books_id_not']} {book_id}")
-
-
+        # Проверяем наличие введенных данных на пустоту
+        if not book_id:
+            raise NotInputError
+        book_id= int(book_id)
+        
+        # Проверяем наличие книги по ID
+        if book_id not in self.books:
+            raise InvalidBookIDError(book_id)
+             
+        if book_id in self.books:
+            removed_book = self.books.pop(book_id)
+            self.save_books()
+            print(f"{LEXICON_STEP['stars']}")
+            return f"{LEXICON['delete_books_true']} {removed_book.id} c названием - {removed_book.title}"
+       
 
     def search_books(self, search_date):
-        try:
-            found_books = [
+        # Преобразуем поисковый запрос к нижнему регистру
+        search_term = search_date.lower()
+        
+        if not search_date:
+            raise NotInputError
+        
+        found_books = [
             book for book in self.books.values()
-            if (search_date.lower() in book.title.lower() or
-                search_date.lower() in book.author.lower() or
-                search_date.lower() in str(book.year).lower())
+            if (search_term in book.title.lower() or
+                search_term in book.author.lower() or
+                search_term in str(book.year))
             ]
-            return found_books
-        except Exception as e:
-            logging.error(f"{LEXICON_LOG['error_search_books']} {e}")
-            print(f"{LEXICON['error_search_books']}")
+        
+        if not found_books:
+            raise NotBookError
+        
+        # Если все условия выполнены, возвращаем список книг
+        return found_books
 
 
     def display_books(self):
@@ -119,20 +127,21 @@ class Library:
     
     
     def update_status(self, book_id:int, new_status:str) ->str:
+        # Проверяем наличие заполненных полей
+        if not book_id or not new_status:
+            raise NotInputError
+        book_id = int(book_id)
         # Проверяем наличие книги по ID
         if book_id not in self.books:
-            logging.error(InvalidBookIDError)
             raise InvalidBookIDError(book_id)
             
         # Проверка допустимости нового статуса
         if new_status not in ['в наличии', 'выдана']:
-            logging.error(InvalidStatusError)
             raise InvalidStatusError(new_status)
 
         current_book:Book = self.books[book_id]
         # Если новый статус совпадает со старым, выбрасываем исключение
         if current_book.status == new_status:
-            logging.error(DuplicateStatusError)
             raise DuplicateStatusError(new_status)
 
         else:

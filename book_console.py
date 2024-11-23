@@ -1,8 +1,5 @@
 """ 
-сделать лоигрование 
-- ошибки - ошибка книги нет при поиске * ошибка при загрузки * 
-
-- поиск - проверить, чтобы было сравнение с маленькой буквы
+- описание 
 - теесты
 
 """
@@ -36,103 +33,118 @@ def book_console():
         print(LEXICON['display_books'])
         print(LEXICON['update_status'])
         print(f"{LEXICON['exit_menu']}\n" )
+        try:
+            choice = (input(LEXICON['choice_menu']))
+            if not choice: 
+                raise NotInputError
+            if not choice.isdigit():
+                raise ValueError(f'Меню может быть только из челых чисел')
+            choice = int(choice)
 
-        choice = int(input(LEXICON['choice_menu']))
-        match choice:
-            case 1:
-                logging.info(LEXICON_LOG['add_book'])
-                while True:
-                    title = input(LEXICON['add_book_title'])
-                    author = input(LEXICON['add_book_author'])
-                    year = input(LEXICON['add_book_year'])
-                    try:
-                        if not title or not author or not year.isdigit():
-                            logging.error(LEXICON_LOG['error_add_book'])
-                            raise ValueError(LEXICON['error_add_book'])
-                        if int(year) <= 0 or int(year) > datetime.now().year:
-                            logging.error(LEXICON_LOG['error_add_book_year'])
-                            raise ValueError(LEXICON['error_add_book_year'])
-                        library.add_book(title, author, year)
-                        logging.info(LEXICON_LOG['add_book_true'])
-                        break
-                    except ValueError as e:
-                        print(LEXICON_STEP['equals'])
-                        print(f'{e}')
-                        print(f"{LEXICON_STEP['equals']} \n")
-                        retry = input(LEXICON['add_book_retry'])
-                        if retry.lower() == 'нет':
+            match choice:
+                
+                case 1:
+                    logging.info(LEXICON_LOG['add_book'])
+                    while True:
+                        title = input(LEXICON['add_book_title'])
+                        author = input(LEXICON['add_book_author'])
+                        year = input(LEXICON['add_book_year'])
+                        try:
+                            if not title or not author or not year:
+                                raise NotInputError
+                            if int(year) <= 0 or int(year) > datetime.now().year:
+                                raise YearBookError(datetime.now().year)
+                            if not year.isdigit():
+                                raise InvalidBookIntError(year)
+                            print(library.add_book(title, author, year))
+                            logging.info(LEXICON_LOG['add_book_true'])
                             break
-                        
+                    
+                        except (NotInputError, YearBookError, InvalidBookIntError) as e:
+                            logging.error(f"{LEXICON_LOG['error_add_book']} {e}")
+                            print(f"{LEXICON_STEP['exclamation_mark']}")
+                            print(e)
 
-            case 2:
-                logging.info(LEXICON_LOG['delete_books'])
-                try:
-                    book_id = int(input(LEXICON['delete_books_id']))
-                    if book_id <= 0:
-                        logging.error(LEXICON_LOG['error_delete_books_id'])
-                        raise ValueError(LEXICON['error_delete_books_id'])
-                    library.remove_book(book_id)
-                    logging.info(LEXICON_LOG['delete_books_true'])
+                            retry = input(LEXICON['add_book_retry'])
+                            if retry.lower() == 0:
+                                break
+                            
 
-                except ValueError as e:
-                    logging.error(f"{LEXICON_LOG['error_delete_books_id']} {e}")
-                    print(LEXICON_STEP['equals'])
-                    print(LEXICON['error_delete_books_id'])
-                    print(f"{LEXICON_STEP['equals']} \n")
+                case 2:
+                    logging.info(LEXICON_LOG['delete_books'])
+                    
+                    try:
+                        book_id = input(LEXICON['delete_books_id'])
+                        if not book_id.isdigit():
+                            raise InvalidBookIntError(book_id)
+                        print(library.remove_book(book_id))
+                        logging.info(LEXICON_LOG['delete_books_true'])
+                    except (NotInputError, InvalidBookIDError, InvalidBookIntError) as e:
+                        logging.error(f"{LEXICON_LOG['error_delete_books']} {e}")
+                        print(f"{LEXICON_STEP['exclamation_mark']}")
+                        print(e)
+                    
+
+                case 3:
+                    logging.info(LEXICON_LOG['search_books'])
+                    try:
+                        search_date = input(LEXICON['search_books_date'])
+                        found_books = library.search_books(search_date)
+                        for book in found_books:
+                            print(LEXICON_STEP['lower'])
+                            print(book.book_dict())
+                        logging.info(LEXICON_LOG['search_books_true'])
+                    except (NotBookError, NotInputError) as e:
+                        logging.error(f"{LEXICON_LOG['error_search_books']} {e}")
+                        print(f"{LEXICON_STEP['exclamation_mark']}")
+                        print(e)
 
 
-            case 3:
-                logging.info(LEXICON_LOG['search_books'])
-                search_date = input(LEXICON['search_books_date'])
-                found_books = library.search_books(search_date)
-                if not found_books:
-                    print(f"{LEXICON['error_search_books_null']} \n")
-                    logging.error({LEXICON_LOG['error_search_books']})
-                else:
-                    for book in found_books:
-                        print(LEXICON_STEP['lower'])
-                        print(book.book_dict())
-                    logging.info(LEXICON_LOG['delete_search_books_true'])
+                case 4:
+                    logging.info(LEXICON_LOG['display_books'])
+                    try:
+                        library_shows = library.display_books()
+                        print(f"{LEXICON_STEP['lower']}")
+                        print(f"{LEXICON_STEP['space']}{LEXICON['display_books_true']}")
+                        print(f"{LEXICON_STEP['lower']}")
+                        for book in library_shows:
+                            print(book.book_dict())
+                        logging.info(LEXICON_LOG['display_books_true'])
+                    except DisplayBookError as e:
+                        logging.error(e)
+                        print(f"{LEXICON_STEP['exclamation_mark']}")
+                        print(e)
+
+                
+                case 5:
+                    logging.info(LEXICON_LOG['update_status'])
+                    try:
+                        book_id = input(LEXICON['update_status_id'])
+                        if not book_id.isdigit():
+                            raise InvalidBookIntError(book_id)
+                        new_status = input(LEXICON['update_status_input'])
+                        print(library.update_status(book_id, new_status))
+                        logging.info(LEXICON_LOG['update_status_true'])
+                    except (InvalidBookIDError, InvalidStatusError, DuplicateStatusError, 
+                            NotInputError, InvalidBookIntError) as e:
+                        logging.error(f"{LEXICON_LOG['error_update_status']} {e}")
+                        print(f"{LEXICON_STEP['exclamation_mark']}")
+                        print(e)
+
+                case 6:
+                    logging.info(LEXICON_LOG['exit_menu'])
+                    print(f"{LEXICON['exit']} \n")
+                    time.sleep(3)
+                    print(f"{LEXICON_STEP['space']}{LEXICON_STEP['space']}{LEXICON['exit_end'].upper()}")
+                    break
+                
+                case _:
+                    raise ValueError("Неверный выбор (в меню нет такого варианта)")
 
 
+        except (ValueError, NotInputError) as e:
+            logging.error(f"{LEXICON_LOG['exit_error']} {e}")
+            print(f"{LEXICON_STEP['exclamation_mark']}")
+            print(e)
 
-            case 4:
-                logging.info(LEXICON_LOG['display_books'])
-                try:
-                    library_shows = library.display_books()
-                    print(f"{LEXICON_STEP['lower']}")
-                    print(f"{LEXICON_STEP['space']}{LEXICON['display_books_true']}")
-                    print(f"{LEXICON_STEP['lower']}")
-                    for book in library_shows:
-                        print(book.book_dict())
-                    logging.info(LEXICON_LOG['display_books_true'])
-                except DisplayBookError as e:
-                    logging.error(e)
-                    print(f"{LEXICON_STEP['exclamation_mark']}")
-                    print(e)
 
-            
-            case 5:
-                logging.info(LEXICON_LOG['update_status'])
-                try:
-                    book_id = int(input(LEXICON['update_status_id']))
-                    new_status = input(LEXICON['update_status_input'])
-                    print(library.update_status(book_id, new_status))
-                    logging.info(LEXICON_LOG['update_status_true'])
-                except (InvalidBookIDError, InvalidStatusError, DuplicateStatusError) as e:
-                    logging.error(f"{LEXICON_LOG['error_update_status']} {e}")
-                    print(f"{LEXICON_STEP['exclamation_mark']}")
-                    print(e)
-
-            case 6:
-                logging.info(LEXICON_LOG['exit_menu'])
-                print(LEXICON['exit'])
-                time.sleep(3)
-                print(f"{LEXICON_STEP['space']}{LEXICON['exit_end']}")
-                break
-
-        # else:
-        #     print("Неверный выбор. Пожалуйста, попробуйте снова.")
-
-if __name__ == "__main__":
-    book_console()
