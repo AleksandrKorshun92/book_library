@@ -86,7 +86,7 @@ class Library:
             if book_id in self.books:
                 removed_book = self.books.pop(book_id)
                 print(f"{LEXICON_STEP['stars']}")
-                print(f"{LEXICON['delete_books_true']} {removed_book.book_dict()}")
+                print(f"{LEXICON['delete_books_true']} {removed_book.id} c названием - {removed_book.title}")
                 print(f"{LEXICON_STEP['stars']}")
                 self.save_books()
         except Exception as e:
@@ -95,30 +95,37 @@ class Library:
 
 
 
-    def search_books(self, search_term):
-        found_books = [
+    def search_books(self, search_date):
+        try:
+            found_books = [
             book for book in self.books.values()
-            if (search_term.lower() in book.title.lower() or
-                search_term.lower() in book.author.lower() or
-                search_term.lower() in str(book.year).lower())
-        ]
-        return found_books
+            if (search_date.lower() in book.title.lower() or
+                search_date.lower() in book.author.lower() or
+                search_date.lower() in str(book.year).lower())
+            ]
+            return found_books
+        except Exception as e:
+            logging.error(f"{LEXICON_LOG['error_search_books']} {e}")
+            print(f"{LEXICON['error_search_books']}")
+
 
     def display_books(self):
         if not self.books:
-            print("Нет книг в библиотеке.")
+            return 
         else:
-            print("Список всех книг:")
-            for book in self.books.values():
-                print(book.book_dict())
+            books_library = [book for book in self.books.values()]
+            return books_library
+
 
     def update_status(self, book_id, new_status):
         if book_id in self.books:
             if new_status in [LEXICON['book_in_stock'], LEXICON['book_is_missing']]:
-                self.books[book_id].status = new_status
-                print(f"Статус книги обновлен: {self.books[book_id].book_dict()}")
-                self.save_books()
+                if self.books[book_id].status != new_status:
+                    print(f"{LEXICON['update_status_true']} {self.books[book_id].book_dict()}")
+                    self.save_books()
+                else:
+                    print(f"{LEXICON['error_update_status_repeat']} {new_status}") 
             else:
-                print("Неверный статус. Доступные статусы: 'в наличии', 'выдана'.")
+                print(LEXICON['error_update_status_input'])
         else:
-            print(f"Книга с ID {book_id} не найдена.")
+            print(f"{LEXICON['error_update_status_id']} {book_id}")

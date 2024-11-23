@@ -21,7 +21,7 @@ logging.basicConfig(
 )
 
 
-def main():
+def book_console():
     logging.info(LEXICON_LOG['start'])
     library = Library()
 
@@ -64,8 +64,8 @@ def main():
 
             case 2:
                 logging.info(LEXICON_LOG['delete_books'])
-                book_id = int(input(LEXICON['delete_books_id']))
                 try:
+                    book_id = int(input(LEXICON['delete_books_id']))
                     if book_id <= 0:
                         logging.error(LEXICON_LOG['error_delete_books_id'])
                         raise ValueError(LEXICON['error_delete_books_id'])
@@ -73,27 +73,56 @@ def main():
                     logging.info(LEXICON_LOG['delete_books_true'])
 
                 except ValueError as e:
+                    logging.error(f"{LEXICON_LOG['error_delete_books_id']} {e}")
                     print(LEXICON_STEP['equals'])
-                    print(f'{e}')
+                    print(LEXICON['error_delete_books_id'])
                     print(f"{LEXICON_STEP['equals']} \n")
 
 
             case 3:
-                search_term = input("Введите заголовок, автора или год для поиска: ")
-                found_books = library.search_books(search_term)
+                logging.info(LEXICON_LOG['search_books'])
+                search_date = input(LEXICON['search_books_date'])
+                found_books = library.search_books(search_date)
                 if not found_books:
-                    print("Книги не найдены.")
+                    print(f"{LEXICON['error_search_books_null']} \n")
+                    logging.error({LEXICON_LOG['error_search_books']})
                 else:
                     for book in found_books:
-                        print(book.to_dict())
+                        print(LEXICON_STEP['lower'])
+                        print(book.book_dict())
+                    logging.info(LEXICON_LOG['delete_search_books_true'])
+
+
 
             case 4:
-                library.display_books()
+                logging.info(LEXICON_LOG['display_books'])
+                library_shows = library.display_books()
+                if not library_shows:
+                    print(f"{LEXICON['error_display_books_null']} \n")
+                    logging.error({LEXICON_LOG['error_display_books_null']})
+                else:
+                    print(f"{LEXICON_STEP['lower']}")
+                    print(f"{LEXICON_STEP['space']}{LEXICON['display_books_true']}")
+                    print(f"{LEXICON_STEP['lower']}")
+                    for book in library_shows:
+                        print(book.book_dict())
+                    logging.info(LEXICON_LOG['display_books_true'])
+
+
 
             case 5:
-                book_id = int(input("Введите ID книги для изменения статуса: "))
-                new_status = input("Введите новый статус (в наличии/выдана): ")
-                library.update_status(book_id, new_status)
+                logging.info(LEXICON_LOG['update_status'])
+                try:
+                    book_id = int(input(LEXICON['update_status_id']))
+                    new_status = input(LEXICON['update_status_input'])
+                    library.update_status(book_id, new_status)
+                    logging.info(LEXICON_LOG['update_status_true'])
+                except ValueError as e:
+                    logging.error(f"{LEXICON_LOG['error_update_status']} {e}")
+                    print(LEXICON_STEP['equals'])
+                    print(LEXICON['error_update_status'])
+                    print(f"{LEXICON_STEP['equals']} \n")
+
 
             case 6:
                 print("Выход из программы.")
@@ -103,4 +132,4 @@ def main():
         #     print("Неверный выбор. Пожалуйста, попробуйте снова.")
 
 if __name__ == "__main__":
-    main()
+    book_console()
