@@ -1,0 +1,464 @@
+[
+    {
+        "id": 1,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 2,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 3,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 4,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 5,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 6,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 7,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 8,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 9,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 10,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 11,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 12,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 13,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 14,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 15,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 16,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 17,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 18,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 19,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 20,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 21,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 22,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 23,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 24,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 25,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 26,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 27,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 28,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 29,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 30,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 31,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 32,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 33,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 34,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 35,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 36,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 37,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 38,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 39,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 40,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 0,
+        "status": "в наличии"
+    },
+    {
+        "id": 41,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 42,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 43,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 44,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 45,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 46,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 47,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 48,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 49,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 50,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 51,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 52,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 53,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 54,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 55,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 56,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 57,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 58,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 59,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 60,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 61,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 62,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 63,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 64,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 65,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    },
+    {
+        "id": 66,
+        "title": "Test Book",
+        "author": "Test Author",
+        "year": 2023,
+        "status": "в наличии"
+    }
+]

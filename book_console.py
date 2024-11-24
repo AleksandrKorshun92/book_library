@@ -8,6 +8,7 @@ import logging
 from datetime import datetime
 import time
 from book_class import Library
+from menu import print_main_menu
 from lexicon import LEXICON, LEXICON_LOG, LEXICON_STEP
 from user_exception import *
 
@@ -26,13 +27,8 @@ def book_console():
 
     while True:
         logging.info(LEXICON_LOG['main_menu'])
-        print(f"\n {LEXICON['main_menu']}")
-        print(f"\n{LEXICON['add_book']}")
-        print(LEXICON['delete_books'])
-        print(LEXICON['search_books'])
-        print(LEXICON['display_books'])
-        print(LEXICON['update_status'])
-        print(f"{LEXICON['exit_menu']}\n" )
+        print_main_menu()
+        
         try:
             choice = (input(LEXICON['choice_menu']))
             if not choice: 
@@ -62,12 +58,12 @@ def book_console():
                     
                         except (NotInputError, YearBookError, InvalidBookIntError) as e:
                             logging.error(f"{LEXICON_LOG['error_add_book']} {e}")
-                            print(f"{LEXICON_STEP['exclamation_mark']}")
+                            # print(f"{LEXICON_STEP['exclamation_mark']}")
                             print(e)
 
-                            retry = input(LEXICON['add_book_retry'])
-                            if retry.lower() == 0:
-                                break
+                            # retry = input(LEXICON['add_book_retry'])
+                            # if retry.lower() == 0:
+                            #     break
                             
 
                 case 2:
