@@ -10,7 +10,7 @@
 6. Выход из программы
 """
 
-from lexicon import LEXICON
+from book.lexicon import LEXICON
 
 def print_main_menu():
     print(f"\n {LEXICON['main_menu']}")

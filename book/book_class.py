@@ -38,8 +38,8 @@ import json
 import os
 import logging
 from typing import Dict, Any, List
-from lexicon import LEXICON_LOG, LEXICON, LEXICON_STEP
-from user_exception import (NotInputError, InvalidBookIDError, NotBookError, DisplayBookError, 
+from book.lexicon import LEXICON_LOG, LEXICON, LEXICON_STEP
+from book.user_exception import (NotInputError, InvalidBookIDError, NotBookError, DisplayBookError, 
                             InvalidStatusError, DuplicateStatusError)
 
 

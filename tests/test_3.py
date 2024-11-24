@@ -18,9 +18,9 @@ book_console.
 import pytest
 import json
 from unittest.mock import patch, mock_open, MagicMock
-from book_console import book_console
-from book_class import Library, Book
-from lexicon import LEXICON, LEXICON_STEP
+from book.book_console import book_console
+from book.book_class import Library, Book
+from book.lexicon import LEXICON, LEXICON_STEP
 
 
 @pytest.fixture
@@ -84,19 +84,19 @@ def test_book_from_dict():
     assert book.status == 'в наличии'
 
 
-def test_library_load_books(mock_library_json_file):
-    """Тестирует загрузку книг из файла библиотеки JSON."""
-    library = Library(filename='test_library.json')
-    assert len(library.books) == 1
-    assert library.books[1].title == 'Тестовое Название'
-
-
 def test_library_add_book():
     """Тестирует добавление книги в библиотеку."""
     library = Library(filename='test_library.json')
     result = library.add_book('Тестовое Название', 'Тестовый Автор', '2020')
     assert result ==f"{LEXICON['add_book_true']} Тестовое Название\n {LEXICON_STEP['stars']}"
-    assert library.books[1].title == 'Тестовое Название'  # Check details of the added book
+    assert library.books[1].title == 'Тестовое Название'  
+
+
+def test_library_load_books(mock_library_json_file):
+    """Тестирует загрузку книг из файла библиотеки JSON."""
+    library = Library(filename='test_library.json')
+    assert len(library.books) == 1
+    assert library.books[1].title == 'Тестовое Название'
 
 
 @patch('builtins.input')

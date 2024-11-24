@@ -30,10 +30,10 @@
 import logging
 import time
 from datetime import datetime
-from book_class import Library
-from menu import print_main_menu
-from lexicon import LEXICON, LEXICON_LOG, LEXICON_STEP
-from user_exception import (NotInputError, InvalidBookIDError, NotBookError, DisplayBookError, 
+from book.book_class import Library
+from book.menu import print_main_menu
+from book.lexicon import LEXICON, LEXICON_LOG, LEXICON_STEP
+from book.user_exception import (NotInputError, InvalidBookIDError, NotBookError, DisplayBookError, 
                             InvalidStatusError, DuplicateStatusError, YearBookError, InvalidBookIntError)
 
 
