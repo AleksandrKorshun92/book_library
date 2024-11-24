@@ -21,6 +21,7 @@ from unittest.mock import patch, mock_open, MagicMock
 from book.book_console import book_console
 from book.book_class import Library, Book
 from book.lexicon import LEXICON, LEXICON_STEP
+from book.menu import print_main_menu
 
 
 @pytest.fixture
@@ -100,7 +101,7 @@ def test_library_load_books(mock_library_json_file):
 
 
 @patch('builtins.input')
-@patch('menu.print_main_menu') 
+@patch('book.menu.print_main_menu') 
 def test_book_console_add_book(mock_print_main_menu, mock_input, mock_library):
     """Тестирует консольный интерфейс добавления книги."""
     
@@ -116,7 +117,7 @@ def test_book_console_add_book(mock_print_main_menu, mock_input, mock_library):
     # Указываем, что будет возвращать метод add_book
     mock_library.add_book.return_value = f"{LEXICON['add_book_true']} Петр\n {LEXICON_STEP['stars']}"
 
-    with patch('book_console.Library', return_value=mock_library):  
+    with patch('book.book_console.Library', return_value=mock_library):  
         book_console()  # Запускаем консольный интерфейс
     
     # Проверяем, что add_book был вызван с правильными аргументами
@@ -125,7 +126,7 @@ def test_book_console_add_book(mock_print_main_menu, mock_input, mock_library):
 
        
 @patch('builtins.input')
-@patch('menu.print_main_menu')
+@patch('book.menu.print_main_menu')
 def test_book_console_delete_book(mock_print_main_menu, mock_input, mock_library):
     """Тестирует консольный интерфейс удаления книги."""
 
@@ -138,7 +139,7 @@ def test_book_console_delete_book(mock_print_main_menu, mock_input, mock_library
     # Указываем, что будет возвращать метод remove_book
     mock_library.remove_book.return_value = "Книга удалена"
 
-    with patch('book_console.Library', return_value=mock_library):  
+    with patch('book.book_console.Library', return_value=mock_library):  
         book_console()  # Запускаем консольный интерфейс
     
     # Проверяем, что remove_book был вызван с правильными аргументами
@@ -146,7 +147,7 @@ def test_book_console_delete_book(mock_print_main_menu, mock_input, mock_library
     
 
 @patch('builtins.input')
-@patch('menu.print_main_menu')
+@patch('book.menu.print_main_menu')
 def test_book_console_search_book(mock_print_main_menu, mock_input, mock_library):
     """Тестирует консольный интерфейс поиск книги."""
 
@@ -161,7 +162,7 @@ def test_book_console_search_book(mock_print_main_menu, mock_input, mock_library
     mock_library = MagicMock()
     mock_library.search_books.return_value = [library.books[1]]  
 
-    with patch('book_console.Library', return_value=mock_library): 
+    with patch('book.book_console.Library', return_value=mock_library): 
         book_console()  # Запускаем консольный интерфейс
     
     # Проверяем, что метод search_books был вызван с правильными аргументами
@@ -170,7 +171,7 @@ def test_book_console_search_book(mock_print_main_menu, mock_input, mock_library
 
 @patch('builtins.print') 
 @patch('builtins.input')  
-@patch('menu.print_main_menu')  
+@patch('book.menu.print_main_menu')  
 def test_book_console_display_books(mock_print_main_menu, mock_input, mock_print, mock_library):
     """Тестирует консольный интерфейс отображения книг из библиотеки."""
 
@@ -189,7 +190,7 @@ def test_book_console_display_books(mock_print_main_menu, mock_input, mock_print
     mock_library.display_books.return_value = [book1, book2]
 
 
-    with patch('book_console.Library', return_value=mock_library):  
+    with patch('book.book_console.Library', return_value=mock_library):  
         book_console()  # Запускаем консольный интерфейс
 
     # Проверяем, что метод display_books был вызван
@@ -201,7 +202,7 @@ def test_book_console_display_books(mock_print_main_menu, mock_input, mock_print
 
 
 @patch('builtins.input')
-@patch('menu.print_main_menu')
+@patch('book.menu.print_main_menu')
 def test_book_console_update_book(mock_print_main_menu, mock_input, mock_library):
     """Тестирует консольный интерфейс изменения статуса книги."""
 
@@ -217,7 +218,7 @@ def test_book_console_update_book(mock_print_main_menu, mock_input, mock_library
     mock_library = MagicMock()
     mock_library.update_status.return_value = [library.books[1]]  
 
-    with patch('book_console.Library', return_value=mock_library):  
+    with patch('book.book_console.Library', return_value=mock_library):  
         book_console()  # Запускаем консольный интерфейс
     
     # Проверяем, что метод update_status был вызван с правильными аргументами
